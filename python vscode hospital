@@ -1,0 +1,105 @@
+class Patient:
+    def __init__(self, patientID, name, age, phoneNumber):
+        self.patientID, self.name, self.age, self.phoneNumber = patientID, name, age, phoneNumber
+    def registerPatient(self): print("Patient", self.name, "registered.")
+    def updateDetails(self, new_age=None, new_phone=None):
+        if new_age: self.age = new_age
+        if new_phone: self.phoneNumber = new_phone
+        print("Patient details updated.")
+    def display(self): print("Patient:", self.patientID, self.name, self.age, self.phoneNumber)
+
+class HospitalRoom:
+    def __init__(self, roomID, roomNumber, roomType):
+        self.roomID, self.roomNumber, self.roomType = roomID, roomNumber, roomType
+    def assignRoom(self): print("Room", self.roomNumber, "assigned.")
+    def updateAvailability(self): print("Room", self.roomNumber, "availability updated.")
+    def display(self): print("Room:", self.roomID, self.roomNumber, self.roomType)
+
+class LabTest:
+    def __init__(self, testID, testName, testDate, result):
+        self.testID, self.testName, self.testDate, self.result = testID, testName, testDate, result
+    def conductTest(self): print("Test", self.testName, "conducted on", self.testDate)
+    def updateResult(self, new_result):
+        self.result = new_result
+        print("Test result updated to:", self.result)
+    def display(self): print("LabTest:", self.testID, self.testName, self.testDate, self.result)
+
+class Treatment:
+    def __init__(self, treatmentID, treatmentName, treatmentDate):
+        self.treatmentID, self.treatmentName, self.treatmentDate = treatmentID, treatmentName, treatmentDate
+    def provideTreatment(self): print("Treatment", self.treatmentName, "provided.")
+    def upgradeTreatment(self, new_treatment):
+        self.treatmentName = new_treatment
+        print("Treatment upgraded to", self.treatmentName)
+    def display(self): print("Treatment:", self.treatmentID, self.treatmentName, self.treatmentDate)
+
+class Doctor:
+    def __init__(self, doctorID, name, specialization):
+        self.doctorID, self.name, self.specialization = doctorID, name, specialization
+    def viewPatients(self): print("Dr.", self.name, "is viewing patients.")
+    def updateAvailability(self): print("Dr.", self.name, "availability updated.")
+    def display(self): print("Doctor:", self.doctorID, self.name, self.specialization)
+
+class Appointment:
+    def __init__(self, appointmentID, date, time):
+        self.appointmentID, self.date, self.time = appointmentID, date, time
+    def scheduleAppointment(self): print("Appointment", self.appointmentID, "scheduled on", self.date, "at", self.time)
+    def cancelAppointment(self): print("Appointment", self.appointmentID, "cancelled.")
+    def display(self): print("Appointment:", self.appointmentID, self.date, self.time)
+
+class Prescription:
+    def __init__(self, prescriptionID, prescriptionDate, dosageInstructions):
+        self.prescriptionID, self.prescriptionDate, self.dosageInstructions = prescriptionID, prescriptionDate, dosageInstructions
+    def createPrescription(self): print("Prescription", self.prescriptionID, "created.")
+    def updatePrescription(self, new_instructions):
+        self.dosageInstructions = new_instructions
+        print("Prescription updated.")
+    def display(self): print("Prescription:", self.prescriptionID, self.prescriptionDate, self.dosageInstructions)
+
+class Medicine:
+    def __init__(self, medicineID, medicineName, dosage):
+        self.medicineID, self.medicineName, self.dosage = medicineID, medicineName, dosage
+    def checkStock(self): print("Checking stock for", self.medicineName)
+    def updateStock(self): print("Stock updated for", self.medicineName)
+    def display(self): print("Medicine:", self.medicineID, self.medicineName, self.dosage)
+
+class Bill:
+    def __init__(self, billID, billDate, totalAmount, paymentStatus="Unpaid"):
+        self.billID, self.billDate, self.totalAmount, self.paymentStatus = billID, billDate, totalAmount, paymentStatus
+    def calculateTotal(self): print("Total amount calculated:", self.totalAmount)
+    def processPayment(self):
+        self.paymentStatus = "Paid"
+        print("Payment processed. Status:", self.paymentStatus)
+    def display(self): print("Bill:", self.billID, self.billDate, self.totalAmount, self.paymentStatus)
+
+class MedicalRecord:
+    def __init__(self, recordID, diagnosis, medicalHistory, recordDate):
+        self.recordID, self.diagnosis, self.medicalHistory, self.recordDate = recordID, diagnosis, medicalHistory, recordDate
+    def addRecord(self): print("Medical record", self.recordID, "added.")
+    def updateRecord(self, new_diagnosis):
+        self.diagnosis = new_diagnosis
+        print("Medical record", self.recordID, "updated.")
+    def display(self): print("MedicalRecord:", self.recordID, self.diagnosis, self.medicalHistory, self.recordDate)
+
+
+# ---- Test ----
+if __name__ == "__main__":
+    p = Patient(1, "Ali", 30, "0500123456")
+    r = HospitalRoom(1, "101", "ICU")
+    t = LabTest(1, "Blood Test", "2026-11-18", "Normal")
+    tr = Treatment(1, "Rest and fluids", "2026-11-18")
+    d = Doctor(1, "Sara", "Cardiology")
+    a = Appointment(1, "2026-11-20", "10:00")
+    pr = Prescription(1, "2026-11-18", "Twice daily after meals")
+    m = Medicine(1, "Paracetamol", "500mg")
+    b = Bill(1, "2026-11-18", 250.50)
+    mr = MedicalRecord(1, "Flu", "No prior major illness", "2026-11-18")
+
+    for obj in [p, r, t, tr, d, a, pr, m, b, mr]:
+        obj.display()
+
+    print("\n--- Testing Methods ---")
+    p.registerPatient()
+    a.scheduleAppointment()
+    b.processPayment()
+    b.display()
